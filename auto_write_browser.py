@@ -100,6 +100,11 @@ def wait():
             print("wait...")
 
 
+def close_chrome():
+    time.sleep(5)  #修正したい
+    os.system("taskkill /im chrome.exe /f")  #exit chrome
+
+
 def main():
     try:
         if get_ssid() == "HINES-WLAN":
@@ -108,8 +113,8 @@ def main():
             wait()
             typing()
 
-            # time.sleep(5)
-            # os.system("taskkill /im chrome.exe /f")  #exit chrome
+            close_chrome()  #chromeを閉じたいとき
+
     except Exception as ex:
         print(ex)
 
