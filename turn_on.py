@@ -1,6 +1,50 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import datetime
+import subprocess
+from subprocess import PIPE
+
+users = {"村山風輝": 12}  #{"key" : value} / dictionary_name["key"] = value
+
+
+def get_ssid():  #SSID:無線LANの名前 #bssid:無線LANのMACアドレス
+    ssid_info = subprocess.run("netsh wlan show interfaces",
+                               shell=True,
+                               stdout=PIPE,
+                               stderr=PIPE,
+                               text=True)
+    datalist = ssid_info.stdout.split('\n')
+    for data in datalist:
+        if data.find('    SSID') == 0:
+            ssid = data[data.find(':') + 2:len(data)]
+            print('ssid = ' + ssid)
+        elif data.find('    BSSID') == 0:
+            bssid = data[data.find(':') + 2:len(data)]
+            print('bssid = ' + bssid)
+
+    return ssid
+
+def get_col():
+
+    dt_now = datetime.date.today()
+    day = dt_now.strftime('%a')  # => 'Sun'
+    col = 'D'
+    if day == 'Mon':
+        col = 'D'
+    elif day == 'Tue':
+        col = 'E'
+    elif day == 'Wed':
+        col = 'F'
+    elif day == 'Thu':
+        col = 'G'
+    elif day == 'Fri':
+        col = 'H'
+    elif day == 'Sat':
+        col = 'I'
+    elif day == 'Sun':
+        col = 'J'
+
+    return col
 
 # use creds to create a client to interact with the Google Drive API
 scope = [
