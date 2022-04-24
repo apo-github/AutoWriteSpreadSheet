@@ -1,0 +1,5 @@
+#ファイル名を書くとgitの管理下から外すことができる
+# U→Untracked(追跡対象外)  M→Modified(変更された)を示すアイコン
+
+autowritespreadsheet-348009-e87f7e5ee490.json
+write_test.py

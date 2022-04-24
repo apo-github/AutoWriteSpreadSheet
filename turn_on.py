@@ -30,5 +30,3 @@ m_d = "{0}月{1}日".format(dt_now.month, dt_now.day)  #今の日付を取得
 # sheet.update_cell(
 #     12, 8,
 #     "8:50-19:30 ミーティングのため")  #(row, col(H) , "words that you send to cell")
-
-### git push test
