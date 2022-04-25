@@ -8,7 +8,7 @@
 @echo off
 chcp 65001
 timeout 10 >nul
-cd C:\Users\スクリプトパス
+cd C:\Users\fukic\Documents\Syoriken\python\auto\出所記録表
 python auto_write_browser.py
 if %errorlevel% neq 0(
     echo wifiにつながっていません.

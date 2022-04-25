@@ -3,7 +3,7 @@
 
 @echo off
 chcp 65001
-cd C:\Users\スクリプトパス
+cd C:\Users\fukic\Documents\Syoriken\python\auto\出所記録表
 timeout 1 >nul
 
 start /wait python auto_write_browser.py

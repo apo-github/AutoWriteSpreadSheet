@@ -31,7 +31,8 @@ def file_read():
     datalist = f.readlines()
     row = str(datalist[0])
     url = str(datalist[1])
-    return row, url
+    ssid = str(datalist[2])
+    return row, url, ssid
 
 
 def get_col():
@@ -106,14 +107,16 @@ def close_chrome():
 
 
 def main():
+    row, url, ssid = file_read()
+
     try:
-        if get_ssid() == "HINES-WLAN":
-            row, url = file_read()
+        if get_ssid() in ssid:
+            print("通りました")
             openbrowser(url, get_col(), row)
             wait()
             typing()
 
-            close_chrome()  #chromeを閉じたいとき
+            # close_chrome()  #chromeを閉じたいとき
 
     except Exception as ex:
         print(ex)
