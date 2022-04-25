@@ -4,7 +4,7 @@ import datetime
 import subprocess
 from subprocess import PIPE
 
-users = {"村山風輝": 12}  #{"key" : value} / dictionary_name["key"] = value
+users = {"ユーザー名": 12}  #{"key" : value} / dictionary_name["key"] = value
 
 
 def get_ssid():  #SSID:無線LANの名前 #bssid:無線LANのMACアドレス
@@ -23,6 +23,7 @@ def get_ssid():  #SSID:無線LANの名前 #bssid:無線LANのMACアドレス
             print('bssid = ' + bssid)
 
     return ssid
+
 
 def get_col():
 
@@ -45,6 +46,7 @@ def get_col():
         col = 'J'
 
     return col
+
 
 # use creds to create a client to interact with the Google Drive API
 scope = [
