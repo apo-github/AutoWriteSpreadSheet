@@ -11,4 +11,6 @@ if %errorlevel% neq 0(
     echo wifiにつながっていません.
     exit /b
 )
+
+start /wait timeout 5 >nul
 start /wait shutdown /s /f /t 0 
