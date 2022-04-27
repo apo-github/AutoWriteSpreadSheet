@@ -111,12 +111,10 @@ def main():
 
     try:
         if get_ssid() in ssid:
-            print("通りました")
             openbrowser(url, get_col(), row)
             wait()
             typing()
-
-            # close_chrome()  #chromeを閉じたいとき
+            close_chrome()  #chromeを閉じたいとき
 
     except Exception as ex:
         print(ex)
