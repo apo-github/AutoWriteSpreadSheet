@@ -78,7 +78,7 @@ def typing():
         text = text + str(get_time()) + " 勉強のため"
         pg.hotkey('delete')
     elif len(text) <= 2:  #empty cell なぜか空白には長さが2ある
-        text = get_time() + "-"
+        text = get_time() + " - "
     print(text)
 
     pyperclip.copy(text)
