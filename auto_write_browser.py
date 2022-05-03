@@ -6,6 +6,7 @@ import pyautogui as pg
 import pyperclip
 import time
 import os
+import sys
 
 
 def get_ssid():  #SSID:無線LANの名前 #bssid:無線LANのMACアドレス
@@ -73,6 +74,7 @@ def typing():
     text = str(pyperclip.paste())
     pyperclip.copy('')  #emptyed in clipbord
     if len(text) > 2:  #exit words in cell
+        text = text.replace('.', '')  # replace dot to empty なぜかドットが入る
         t_index = text.find('-')  #find text index
         text = text[:t_index + 1]
         text = text + str(get_time()) + " 勉強のため"
@@ -80,6 +82,8 @@ def typing():
     elif len(text) <= 2:  #empty cell なぜか空白には長さが2ある
         text = get_time() + " - "
     print(text)
+    success_code = "SUCCESS"
+    print(success_code)
 
     pyperclip.copy(text)
     pg.hotkey('Enter')
@@ -87,17 +91,21 @@ def typing():
     pg.hotkey('Enter')
 
 
-def wait():
+def wait(max_wait_time):
     time.sleep(3)
+    count = 0  #待ちカウント保持
     # pg.doubleClick(10, 10)
-    for i in range(100):
+    for i in range(max_wait_time):
         try:
-            x = pg.locateCenterOnScreen("./image/meeting.png")
+            x = pg.locateCenterOnScreen("./image/drive.png")
             if x != "none":
                 print("ready to write:", x)
                 break
         except Exception as ex:
             x = "none"
+            count += 1
+            if count > max_wait_time:
+                sys.exit(-1)
             print("wait...")
 
 
@@ -107,18 +115,22 @@ def close_chrome():
 
 
 def main():
+    max_wait_time = 20  #最大待ち時間
     row, url, ssid = file_read()
 
     try:
         if get_ssid() in ssid:
             openbrowser(url, get_col(), row)
-            wait()
+            wait(max_wait_time)
             typing()
-            close_chrome()  #chromeを閉じたいとき
+            # close_chrome()  #chromeを閉じたいとき
 
     except Exception as ex:
         print(ex)
+        print('wifiに接続していない可能性があります')
+        sys.exit(-1)
 
 
 if __name__ == '__main__':
     main()
+    sys.exit(0)
