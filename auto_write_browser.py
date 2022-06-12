@@ -70,6 +70,12 @@ def get_time():
 
 
 def typing():
+    dt_now = datetime.date.today()
+    day = dt_now.strftime('%a')  # => 'Sun'
+    message = " 勉強のため"
+    if day == 'Fri':
+        message = " ミーティングのため"
+
     pg.hotkey('ctrl', 'c')
     text = str(pyperclip.paste())
     pyperclip.copy('')  #emptyed in clipbord
@@ -77,7 +83,7 @@ def typing():
         text = text.replace('.', '')  # replace dot to empty なぜかドットが入る
         t_index = text.find('-')  #find text index
         text = text[:t_index + 1]
-        text = text + str(get_time()) + " 勉強のため"
+        text = text + str(get_time()) + message
         pg.hotkey('delete')
     elif len(text) <= 2:  #empty cell なぜか空白には長さが2ある
         text = get_time() + " - "
