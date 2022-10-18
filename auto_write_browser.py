@@ -59,7 +59,7 @@ def get_col():
 
 
 def openbrowser(url, col, row):
-    url = url + str(col) + str(row)
+    url = str(url) + str(col) + str(row)
     print(url)
     webbrowser.open(url)
 
@@ -123,6 +123,10 @@ def close_chrome():
 def main():
     max_wait_time = 20  #最大待ち時間
     row, url, ssid = file_read()
+    row.replace(' ', '')
+    url.replace(' ', '')
+    ssid.replace(' ', '')
+    print(row, url, ssid)
 
     try:
         if get_ssid() in ssid:
